@@ -1,0 +1,34 @@
+@startuml
+|客户|
+start
+:申请服务;
+|#AntiqueWhite|业务经理|
+if (是新客户吗?) then (是)
+	:登记客户信息;
+	endif
+:上门勘察;
+:制定方案;
+|客户|
+if(满意吗?) then (否)
+	end
+else(是)
+	:签订服务合同;
+
+|业务经理|
+fork
+	:安排工人;
+fork again
+	:安排材料;
+end fork
+:填写派工单;
+|#HotPink|工人|
+:领取材料;
+:上门服务;
+|客户|
+:验收并填写反馈意见;
+|业务经理|
+:交回派工单;
+|#FFAAAA|财务人员|
+:结算收款;
+stop
+@enduml
