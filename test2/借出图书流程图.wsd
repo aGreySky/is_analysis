@@ -1,0 +1,28 @@
+@startuml
+|图书管理员|
+start
+repeat
+	:输入账号;
+	|系统|
+	:判断账号合法性;
+repeat while (输入正确?)
+|图书管理员|
+repeat
+	:输入借出账号;
+	|系统|
+	:判断账号合法性;
+repeat while (输入合法?)
+|系统|
+if (库存不足) then (不足)
+	:返回库存不足，中止借阅;
+	detach
+else
+	:借出图书;
+endif
+:修改库存;
+
+|图书管理员|
+:查看结果;
+
+stop
+@enduml

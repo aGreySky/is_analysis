@@ -1,0 +1,19 @@
+@startuml
+|读者|
+start
+repeat
+	:输入账号;
+	|系统|
+	:判断账号合法性;
+repeat while (输入正确?)
+if(库存不足?) then (不足)
+	:库存不足，中止预订;
+	detach
+else
+	:库存减一;
+:返回预订信息;
+|读者|
+:预订成功;
+
+stop
+@enduml

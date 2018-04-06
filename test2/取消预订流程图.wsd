@@ -1,0 +1,15 @@
+@startuml
+|读者|
+start
+repeat
+	:输入账号;
+	|系统|
+	:判断账号合法性;
+repeat while (输入正确?)
+:库存加一;
+:返回取消预订信息;
+|读者|
+:取消预订成功;
+
+stop
+@enduml
