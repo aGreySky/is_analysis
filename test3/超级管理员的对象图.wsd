@@ -1,0 +1,9 @@
+@startuml
+
+object 超级管理员 {
+		 username = "superRoot"
+		 password = "123"
+}
+
+
+@enduml

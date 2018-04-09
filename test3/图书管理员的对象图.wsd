@@ -1,0 +1,9 @@
+@startuml
+
+object 图书管理员 {
+		 username = "root"
+		 password = "123"
+}
+
+
+@enduml

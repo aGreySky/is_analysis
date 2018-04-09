@@ -1,0 +1,7 @@
+@startuml
+
+object 游客 {
+		
+	}
+
+@enduml

@@ -1,0 +1,58 @@
+@startuml
+
+package "图书管理系统类包" #DDDDDD {
+  
+	object 图书管理员 {
+		 username = "root"
+		 password = "123"
+	}
+	object 超级管理员 {
+		 username = "superRoot"
+		 password = "123"
+	}
+	
+	
+	object 读者 {
+	 	username = "zhouzhiqiang"
+		password = "123"
+	}
+	object 游客 {
+		
+	}
+
+	object 图书 {
+	 	书名 = "信息系统分析与设计"
+	 	ISBN号 = "978-986-181-729"
+	 	总量 = "500"
+	 	库存 = "400"
+	 	价格 = "10.1"
+	 	出版社 = "科学出版社"
+	 	简介 = "信息系统分析与设计是好书"
+	 	作者 = "王晓敏"
+	}
+
+	object 借书记录 {
+	 	读者姓名 = "zhouzhiqiang"
+	 	图书ISBN号 = "978-986-181-729"
+	 	借出时间 = "2018-4-12"
+	 	归还期限 = "2018-5-12"
+	}
+
+	note "<color:blue>省略Getter和Setter方法。</color>" as note1
+
+	图书 .. note1
+	note1 .. 借书记录
+
+	图书管理员 <|-- 超级管理员 : 维护图书管理员信息
+	游客 <|-- 读者 : 注册登录
+	读者 "1" *-- "N" 借书记录 : 借书和还书
+	借书记录 "1" o-- "1" 图书 : 一一对应
+	借书记录 "N" -- "1" 图书管理员 : 登记和归还
+	图书管理员 "N" -- "N" 图书 : 维护图书
+	图书管理员 "N" -- "N" 读者 : 维护读者信息
+
+  
+}
+
+
+@enduml
