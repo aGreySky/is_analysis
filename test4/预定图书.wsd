@@ -1,0 +1,53 @@
+@startuml
+skinparam backgroundColor #EEEBDC
+skinparam handwritten true
+
+skinparam sequence {
+	ArrowColor DeepSkyBlue
+	ActorBorderColor DeepSkyBlue
+	LifeLineBorderColor blue
+	LifeLineBackgroundColor #A9DCDF
+	
+	ParticipantBorderColor DeepSkyBlue
+	ParticipantBackgroundColor DodgerBlue
+	ParticipantFontName Impact
+	ParticipantFontSize 17
+	ParticipantFontColor #A9DCDF
+	
+	ActorBackgroundColor aqua
+	ActorFontColor DeepSkyBlue
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+hide footbox
+title __预定图书__ 用例
+actor 读者 
+boundary 权限判断
+control 业务控制
+database 数据库
+
+
+autonumber
+group 账号合法性验证
+activate 权限判断
+	读者 -> 权限判断 :  输入账号信息
+	activate 业务控制
+		权限判断 -> 业务控制 : 获取账号信息
+deactivate 权限判断
+		activate 数据库
+			业务控制 -> 数据库 : 比对账号密码合法性
+			数据库 --> 业务控制 : 账号合法
+end
+group 预定图书
+			读者 -> 业务控制 : 输入预定图书信息
+			业务控制 -> 数据库 : 增加预定信息
+			数据库 -> 业务控制 : 返回操作结果
+		deactivate 数据库
+	业务控制 -> 读者 : 返回预定图书结果
+	deactivate 业务控制
+	
+
+end
+
+@enduml

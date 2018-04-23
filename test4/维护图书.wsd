@@ -1,0 +1,53 @@
+@startuml
+skinparam backgroundColor #EEEBDC
+skinparam handwritten true
+
+skinparam sequence {
+	ArrowColor DeepSkyBlue
+	ActorBorderColor DeepSkyBlue
+	LifeLineBorderColor blue
+	LifeLineBackgroundColor #A9DCDF
+	
+	ParticipantBorderColor DeepSkyBlue
+	ParticipantBackgroundColor DodgerBlue
+	ParticipantFontName Impact
+	ParticipantFontSize 17
+	ParticipantFontColor #A9DCDF
+	
+	ActorBackgroundColor aqua
+	ActorFontColor DeepSkyBlue
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+hide footbox
+title __维护图书__ 用例
+actor 图书管理员 
+boundary 图书合法性判断
+control 业务控制
+database 数据库
+
+
+autonumber
+group 图书信息合法性验证
+activate 图书合法性判断
+	图书管理员 -> 图书合法性判断 :  输入图书信息
+	activate 业务控制
+		图书合法性判断 -> 业务控制 : 获取图书信息
+deactivate 图书合法性判断
+		activate 数据库
+			业务控制 -> 数据库 : 图书是否存在
+			数据库 --> 业务控制 : 图书存在
+end
+group 维护图书
+			图书管理员 -> 业务控制 : 输入图书新信息
+			业务控制 -> 数据库 : 修改图书信息
+			数据库 -> 业务控制 : 返回操作结果
+		deactivate 数据库
+	业务控制 -> 图书管理员 : 返回维护图书结果
+	deactivate 业务控制
+	
+
+end
+
+@enduml
