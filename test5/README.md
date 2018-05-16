@@ -94,7 +94,6 @@
 |参数名称|必填|说明|
 |:-------:|:-------------: | :----------:|
 |readerId|是|用于指定查询的读者 |
-|method|是|固定为 “POST”|
 
 - 请求实例：
 ```
@@ -135,7 +134,6 @@
 |参数名称|必填|说明|
 |:-------:|:-------------: | :----------:|
 |readerId|是|用于指定删除的读者 |
-|method|是|固定为 “POST”|
 
 - 请求实例：
 ```
@@ -165,19 +163,18 @@
 - 功能：用于修改指定读者
 - 请求地址： http://localhost:8080/LibrarySystem/PATCH/readers/xxx
 - 请求方法：POST
-- 请求参数：Json格式的读者的所有属性（注：可修改密码，存储前系统会进行加密）
+- 请求参数：Json格式的读者的部分或全部属性（注：可修改密码，存储前系统会进行加密）
 
 |参数名称|必填|说明|
 |:-------:|:-------------: | :----------:|
-|Reader|是|读者类对象 |
-|method|是|固定为 “POST”|
+|data|是|填写的读者json串(可添加一项或多项)|
 
 - 请求实例：
 ```
 请求地址：http://localhost:8080/LibrarySystem/PATCH/readers/201510511129
 参数格式：
 Content-Type: application/json
- {
+ "data": {
      readerId = "root"
      name = "周志强"
      password = "123456"
@@ -225,15 +222,14 @@ Content-Type: application/json
 
 |参数名称|必填|说明|
 |:-------:|:-------------: | :----------:|
-|Reader|是|读者类对象 |
-|method|是|固定为 “POST”。|
+|data|是|填写的读者json串(每项必填)|
 
 - 请求实例：
 ```
 请求地址：http://localhost:8080/LibrarySystem/POST/reader
 参数格式：
 Content-Type: application/json
- {
+ "data": {
      readerId = "root"
      name = "周志强"
      password = "123456"
