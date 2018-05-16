@@ -49,7 +49,7 @@
 |photo|varbinary(60000)||是||图书管理员照片|  
 
 
-**1.3 超级管理员表**
+**1.4 超级管理员表**
 
 |字段|类型|主键，外键|可以为空|约束|说明|
 |:-------:|:-------------:|:------:|:----:|:---:|:-----|    
@@ -62,13 +62,13 @@
 
 
 
-**1.4 借书表**
+**1.5 借书表**
 
 |字段|类型|主键，外键|可以为空|约束|说明|
 |:-------:|:-------------:|:------:|:----:|:---:|:-----|    
 |id|int(100)|主键|否|数据库自动生成|借书记录ID|
-|readerId|varchar(100)|外键|否||读者ID|  
-|bookId|int(100)|外键|否||图书ID|  
+|readerId|varchar(100)|外键|否||读者ID,参见读者表|  
+|bookId|int(100)|外键|否||图书ID，参见图书表|  
 |ISBN|varchar(100)||否|唯一，只包含数字和"-"|图书ISBN号| 
 |ltime|datetime||否|不能超过当前日期|借书时间|  
 |returnRequest|bit(1)||否|默认为0，提交请求后用1表示|表示读者通过系统自主提交还书请求| 
@@ -106,7 +106,7 @@
     "code": 200,
     "data": {
              readerId = "root"
-     	     name = "zhouzhiqiang"
+     	     name = "周志强"
     	     sex = 1
     	     born = "2018-04-14 01:16:00"
     	     spec = "软工"
@@ -123,13 +123,13 @@
 |msg|请求响应结果|
 |data|读者的个人信息|
 |code|返回码，用于判断请求是否被响应|
-/注：因为密码为加密数据且无需使用，不需返回\n照片不为必填项，数据库中若无则返回"",其余参数均不能为空/
+|注：因为密码为加密数据且无需使用，不需返回，照片不为必填项，数据库中若无则返回"",其余参数均不能为空|
 
 2. 读者删除
 
 - 功能：用于删除指定读者
 - 请求地址： http://localhost:8080/LibrarySystem/DELETE/readers/xxx
-- 请求方法：GET
+- 请求方法：POST
 - 请求参数：readerId(String)
 
 |参数名称|必填|说明|
@@ -165,12 +165,12 @@
 - 功能：用于修改指定读者
 - 请求地址： http://localhost:8080/LibrarySystem/PATCH/readers/xxx
 - 请求方法：POST
-- 请求参数：Json格式的Reader对象（注：可修改密码，存储前系统会进行加密）
+- 请求参数：Json格式的读者的所有属性（注：可修改密码，存储前系统会进行加密）
 
 |参数名称|必填|说明|
 |:-------:|:-------------: | :----------:|
 |Reader|是|读者类对象 |
-|method|是|固定为 “POST”。|
+|method|是|固定为 “POST”|
 
 - 请求实例：
 ```
@@ -179,7 +179,7 @@
 Content-Type: application/json
  {
      readerId = "root"
-     name = "zhouzhiqiang"
+     name = "周志强"
      password = "123456"
      sex = 1
      born = "2018-04-14 01:16:00"
@@ -195,7 +195,7 @@ Content-Type: application/json
     "code": 200,
     "data": {
              readerId = "root"
-     	     name = "zhouzhiqiang"
+     	     name = "周志强"
     	     sex = 1
     	     born = "2018-04-14 01:16:00"
     	     spec = "软工"
@@ -212,16 +212,16 @@ Content-Type: application/json
 |:-------:|:-------------: |
 |msg|请求响应结果|
 |data|返回的主体信息，读者类对象+flag参数|
-|code|，返回码，用于判断请求是否被响应|
+|code|返回码，用于判断请求是否被响应|
 |flag|读者是否修改成功|
-/注：返回的data中不包含密码/
+|注：返回的data中不包含密码|
 
 4. 读者新加
 
 - 功能：用于添加读者
 - 请求地址： http://localhost:8080/LibrarySystem/POST/reader
 - 请求方法：POST
-- 请求参数：Json格式的Reader对象（注：必需设置密码，存储前系统会进行加密）
+- 请求参数：Json格式的读者的所有属性组成（注：必需设置密码，存储前系统会进行加密）
 
 |参数名称|必填|说明|
 |:-------:|:-------------: | :----------:|
@@ -235,7 +235,7 @@ Content-Type: application/json
 Content-Type: application/json
  {
      readerId = "root"
-     name = "zhouzhiqiang"
+     name = "周志强"
      password = "123456"
      sex = 1
      born = "2018-04-14 01:16:00"
@@ -269,9 +269,9 @@ Content-Type: application/json
 |:-------:|:-------------: |
 |msg|请求响应结果|
 |data|返回的主体信息，读者类对象+flag参数|
-|code|，返回码，用于判断请求是否被响应|
+|code|返回码，用于判断请求是否被响应|
 |flag|读者是否添加成功|
-/注：返回的data中不包含密码/
+|注：返回的data中不包含密码|
 
 
 
