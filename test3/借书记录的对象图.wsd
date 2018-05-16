@@ -1,11 +1,15 @@
 @startuml
 
 object 借书记录 {
-	 	读者姓名 = "zhouzhiqiang"
-	 	图书ISBN号 = "978-986-181-729"
-	 	借出时间 = "2018-4-12"
-	 	归还期限 = "2018-5-12"
-}
+		"借书ID" id = 1
+		"图书ID" bookId = 2
+	 	"读者ID" readerId = "zhouzhiqiang"
+	 	"ISBN号" ISBN = "978-986-181-729"
+	 	"借出时间" ltime = "2018-4-12"
+	 	"归还请求" returnRequest = 1
+	 	"归还确认" lendConfirm = 1
+	}
 
+	note right : "归还请求、借书确认为Boolean型变量，\n表示读者通过系统自主提交还书请求，\n默认为0，提交请求后用1表示，\n借书确认表示管理员是否受理借书请求，默认为0,处理后为1"
 
 @enduml

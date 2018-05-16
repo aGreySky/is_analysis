@@ -1,8 +1,15 @@
 @startuml
 
 object 读者 {
-	 	username = "zhouzhiqiang"
-		password = "123"
-}
+	 	 "读者ID" readerId = "root"
+     	 "姓名" name = "zhouzhiqiang"
+     	 "读者密码" password = "123456"
+    	 "性别"  sex = 1
+    	 "生日" born = "2018-04-14 01:16:00"
+    	 "专业" spec = "软工"
+    	 "照片" photo = "??WExif"
+    	 "借书量" num = 1
+	}
+	note  right : "sex为Boolean类型，1表示男，0表示女\n照片为字节型数组，直接存放在数据库中"
 
 @enduml

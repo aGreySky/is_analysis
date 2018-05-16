@@ -3,52 +3,68 @@
 package "图书管理系统类包" #DDDDDD {
   
 	object 图书管理员 {
-		 username = "root"
-		 password = "123"
+		 "管理员ID" adminId = "root"
+		 "管理员密码" password = "123456"
+     	 "姓名" name = "zhouzhiqiang"
+    	 "性别"  sex = 1
+    	 "生日" born = "2018-04-14 01:16:00"
+    	 "照片" photo = "??WExif"
 	}
+	note  "Tip:sex为Boolean类型，1表示男，0表示女\n照片、封面为字节型数组，直接存放在数据库中" as note2
 	object 超级管理员 {
-		 username = "superRoot"
-		 password = "123"
+		 "超级管理员ID" superAdminId = "superRoot"
+		 "超级管理员密码" password = "123456"
+     	 "姓名" name = "zhouzhiqiang"
+    	 "性别"  sex = 1
+    	 "生日" born = "2018-03-14 01:16:00"
+    	 "照片" photo = "??WExif"
 	}
 	
 	
 	object 读者 {
-	 	username = "zhouzhiqiang"
-		password = "123"
-	}
-	object 游客 {
-		
+	 	 "读者ID" readerId = "root"
+     	 "姓名" name = "zhouzhiqiang"
+     	 "读者密码" password = "123456"
+    	 "性别"  sex = 1
+    	 "生日" born = "2018-04-14 01:16:00"
+    	 "专业" spec = "软工"
+    	 "照片" photo = "??WExif"
+    	 "借书量" num = 1
 	}
 
+
 	object 图书 {
-	 	书名 = "信息系统分析与设计"
-	 	ISBN号 = "978-986-181-729"
-	 	总量 = "500"
-	 	库存 = "400"
-	 	价格 = "10.1"
-	 	出版社 = "科学出版社"
-	 	简介 = "信息系统分析与设计是好书"
-	 	作者 = "王晓敏"
+		"书号" bookId = 1
+		"ISBN号" ISBN = "978-986-181-729"
+	 	"书名" bookName = "信息系统分析与设计"
+	 	"作者" author = "王晓敏"
+	 	"简介" summary = "信息系统分析与设计》是2004年西安电子科技大学出版社出版的图书,
+	 					 作者是卫红春。主要讲述了信息系统的基本概念、基本理论和基本方法。"
+	 	"出版社" publisher = "科学出版社"
+	 	"价格" price = "10.1"
+	 	"总量" cnum = "500"
+	 	"库存" snum = "400"
+		"封面" photo = "??WExif"
 	}
 
 	object 借书记录 {
-	 	读者姓名 = "zhouzhiqiang"
-	 	图书ISBN号 = "978-986-181-729"
-	 	借出时间 = "2018-4-12"
-	 	归还期限 = "2018-5-12"
+		"借书ID" id = 1
+		"图书ID" bookId = 2
+	 	"读者ID" readerId = "zhouzhiqiang"
+	 	"ISBN号" ISBN = "978-986-181-729"
+	 	"借出时间" ltime = "2018-4-12"
+	 	"归还请求" returnRequest = 1
+	 	"归还确认" lendConfirm = 1
 	}
 
-	note "<color:blue>省略Getter和Setter方法。</color>" as note1
+	note right : "归还请求、借书确认为Boolean型变量，\n表示读者通过系统自主提交还书请求，\n默认为0，提交请求后用1表示，\n借书确认表示管理员是否受理借书请求，默认为0,处理后为1"
 
-	图书 .. note1
-	note1 .. 借书记录
 
 	图书管理员 <|-- 超级管理员 : 维护图书管理员信息
-	游客 <|-- 读者 : 注册登录
-	读者 "1" -- "N" 借书记录 : 借书和还书
+	读者 "1" - "N" 借书记录 : 借书和还书
 	借书记录 "1" -- "1" 图书 : 一一对应
 	借书记录 "N" -- "1" 图书管理员 : 登记和归还
-	图书管理员 "N" -- "N" 图书 : 维护图书
+	图书管理员 "N" - "N" 图书 : 维护图书
 	图书管理员 "N" -- "N" 读者 : 维护读者信息
 
   

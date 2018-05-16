@@ -1,9 +1,13 @@
 @startuml
 
 object 超级管理员 {
-		 username = "superRoot"
-		 password = "123"
-}
+		 "超级管理员ID" superAdminId = "superRoot"
+		 "超级管理员密码" password = "123456"
+     	 "姓名" name = "zhouzhiqiang"
+    	 "性别"  sex = 1
+    	 "生日" born = "2018-03-14 01:16:00"
+    	 "照片" photo = "??WExif"
+	}
 
-
+note  right : "sex为Boolean类型，1表示男，0表示女\n照片为字节型数组，直接存放在数据库中"
 @enduml
