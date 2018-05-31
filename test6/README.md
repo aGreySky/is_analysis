@@ -44,7 +44,7 @@
      
 ## 6. 界面及用例详细设计
 
-### [“登录”用例](./src/用例/登录.md),[界面](https://agreysky.github.io/is_analysis/test6/src/ui/login.html)
+### [“登录”用例](./src/用例/登录.md),[界面](https://agreysky.github.io/is_analysis/test6/src/ui/login_html.html)
 ### [“登出”用例](./src/用例/登出.md),[界面](https://agreysky.github.io/is_analysis/test6/src/ui/顶部菜单_html.html)
 ### [“修改密码”用例](./src/用例/修改密码.md),[界面](https://agreysky.github.io/is_analysis/test6/src/ui/顶部菜单_html.html)
 ### [“查看个人信息”用例](./src/用例/查看个人信息.md),[界面](https://agreysky.github.io/is_analysis/test6/src/ui/顶部菜单_html.html)
