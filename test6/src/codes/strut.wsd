@@ -1,0 +1,51 @@
+@startuml
+
+!define Junction_And circle #whitesmoke
+!define Junction_Or circle #33a3dc
+
+Junction_And "学生"
+
+rectangle "基于GitHub的实验管理平台的分析与设计" #cd9a5b
+
+
+rectangle "登录系统" #cde6c7
+rectangle "查看修改个人信息" #abc88b
+rectangle "修改密码" #abc88b
+rectangle "登出系统" #abc88b
+
+
+rectangle "选择学期" #abc88b
+rectangle "选择攻读课程" #84bf96
+rectangle "查看成绩及评价（课程、实验、评分点）" as r1 #45b97c 
+rectangle "查看本课程实验任务" #45b97c
+学生 -down-> 登录系统 : 选择\n学生\n身份
+登录系统 -down-> 登出系统
+登录系统 -down-> 查看修改个人信息
+登录系统 -down-> 修改密码
+登录系统 -down-> 选择学期 : 默认\n当前\n学期
+选择学期 -down-> 选择攻读课程 : 显示\n课程\n列表
+选择攻读课程 -down-> r1
+选择攻读课程 -down-> 查看本课程实验任务
+
+
+Junction_Or "老师" 
+
+rectangle "选择任教课程" #abc88b
+rectangle "新建课程" #abc88b
+rectangle "显示本课程学生列表" #84bf96
+rectangle "删改查课程信息" #84bf96
+rectangle "填写课程信息" #84bf96
+rectangle "增删改查本课程实验任务" #45b97c
+rectangle "查看和评定某学生成绩（课程、实验、评分点）" as r2 #45b97c
+老师 -[#33a3dc]down-> 登录系统 : 选择\n老师\n身份
+登录系统 -[#33a3dc]down-> 登出系统
+登录系统 -[#33a3dc]down-> 查看修改个人信息
+登录系统 -[#33a3dc]down-> 修改密码
+登录系统 -[#33a3dc]down-> 选择任教课程 : 默认\n最新添加\n课程
+登录系统 -[#33a3dc]down-> 新建课程
+选择任教课程 -[#33a3dc]down-> 显示本课程学生列表
+选择任教课程 -[#33a3dc]down-> 删改查课程信息
+新建课程 -[#33a3dc]down-> 填写课程信息
+显示本课程学生列表 -[#33a3dc]down-> r2
+删改查课程信息 -[#33a3dc]down-> 增删改查本课程实验任务
+@enduml

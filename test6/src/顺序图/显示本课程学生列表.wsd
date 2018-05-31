@@ -1,0 +1,8 @@
+@startuml
+title 基于GitHub的实验管理平台--显示本课程学生列表的顺序图
+actor teachers
+teachers -> courses: 根据课程编号查询课程信息
+courses -> students: 根据开课学期，班级，专业查询本课程学生
+students -> teachers: 返回学生列表
+
+@enduml

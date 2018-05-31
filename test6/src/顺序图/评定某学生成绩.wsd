@@ -1,0 +1,11 @@
+@startuml
+title 基于GitHub的实验管理平台--评定某学生成绩的顺序图
+actor teachers
+teachers -> details_scores: 给出评分点成绩
+teachers -> experiments_scores: 根据评分点成绩，按比例得出实验成绩
+teachers -> courses_scores: 根据实验成绩，按比例得出课程成绩
+
+
+
+
+@enduml

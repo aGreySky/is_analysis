@@ -1,0 +1,20 @@
+@startuml
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor #Black
+skinparam titleFontSize 24
+Title 显示成绩列表流程图
+
+
+actor 显示成绩主页面
+actor API服务
+database 数据库存储
+
+== 主页面 ==
+显示成绩主页面->API服务:传入课程编号course_id和学号student_id
+API服务->数据库存储:根据学号和课程编号、实验编号和评分点编号查询相应成绩
+数据库存储->API服务:返回成绩集合
+API服务->显示成绩主页面:返回经过完善后的成绩集合
+== 登录后正常使用，\n每次请求都会访问API==
+
+@enduml

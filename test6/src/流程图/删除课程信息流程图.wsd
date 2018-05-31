@@ -1,0 +1,21 @@
+@startuml
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor #Black
+skinparam titleFontSize 24
+Title 删除课程信息流程图
+
+
+actor 老师显示实验信息主页面
+actor API服务
+database 数据库存储
+
+== 老师主页面 ==
+老师显示课程信息主页面->API服务:传入老师要删除的课程信息
+API服务->API服务:判断传入的实验id号合法性
+API服务->数据库存储:将课程信息从对应的数据库表中删除
+数据库存储->API服务:返回删除结果
+API服务->老师显示课程信息主页面:返回响应信息
+== 老师登录后正常使用，\n每次请求都会访问API==
+
+@enduml

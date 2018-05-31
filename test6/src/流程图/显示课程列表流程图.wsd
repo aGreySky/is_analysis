@@ -1,0 +1,23 @@
+@startuml
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor #Black
+skinparam titleFontSize 24
+Title 显示学期列表流程图
+
+
+actor 学生显示课程主页面
+actor API服务
+database 数据库存储
+
+== 学生主页面 ==
+学生显示课程主页面->API服务:传入用户的user_id、type和选择的学期term
+API服务->API服务:首先判断type是否为学生，再判断user_id的合法性
+API服务->数据库存储:获取该学生的专业MAJOR和班级CLASS信息字段，并加上学期term约束，联合查询courses表
+数据库存储->数据库存储:通过courses表中的teacher_id查询teachers表和users表，获取老师姓名，加入course列表中
+数据库存储->API服务:返回符合条件的课程course记录
+数据库存储->API服务:返回符合条件的课程course记录
+API服务->学生显示课程主页面:返回指定学期的课程course集合
+== 学生登录后正常使用，\n每次请求都会访问API==
+
+@enduml

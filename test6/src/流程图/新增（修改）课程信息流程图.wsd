@@ -1,0 +1,21 @@
+@startuml
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor #Black
+skinparam titleFontSize 24
+Title 新增（修改）课程信息流程图
+
+
+actor 老师显示课程信息主页面
+actor API服务
+database 数据库存储
+
+== 老师主页面 ==
+老师显示课程信息主页面->API服务:传入老师新增（修改）后的课程信息
+API服务->API服务:将传入的课程信息整理
+API服务->数据库存储:将课程信息存入对应的数据库表中
+数据库存储->API服务:返回新增（修改）结果
+API服务->老师显示课程信息主页面:返回响应信息
+== 老师登录后正常使用，\n每次请求都会访问API==
+
+@enduml

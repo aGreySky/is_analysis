@@ -1,0 +1,6 @@
+@startuml
+title 基于GitHub的实验管理平台--显示课程列表的顺序图
+actor students
+students -> courses: 根据专业和学期查找课程
+courses -> students: 返回对应的课程列表
+@enduml

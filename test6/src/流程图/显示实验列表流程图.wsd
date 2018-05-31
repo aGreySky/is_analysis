@@ -1,0 +1,20 @@
+@startuml
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor #Black
+skinparam titleFontSize 24
+Title 显示实验列表流程图
+
+
+actor 显示实验主页面
+actor API服务
+database 数据库存储
+
+== 主页面 ==
+显示实验主页面->API服务:传入课程编号course_id
+API服务->数据库存储:根据course_id查询experiments表
+数据库存储->API服务:返回符合条件的实验记录
+API服务->学生显示实验主页面:返回指定课程的实验experiment集合
+== 登录后正常使用，\n每次请求都会访问API==
+
+@enduml

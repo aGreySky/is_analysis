@@ -1,0 +1,65 @@
+@startuml
+
+skinparam packageStyle rectangle
+
+title 基于GitHub的实验管理平台--用例图
+
+actor teachers
+actor students
+actor users
+users <|-- teachers
+users <|-- students
+
+rectangle  用户用例集 {
+	users --up-> (登录)
+	users --up-> (登出)
+	users --up-> (查看用户信息)
+	users --up-> (修改用户信息)
+	users --up-> (修改密码)
+
+	(登录) .> (登出) : extends
+	(查看用户信息) .> (修改用户信息) : extends
+
+}
+rectangle 业务用例集 {
+	left to right direction
+	teachers -> (选择任教课程)
+	teachers ----> (新建课程)
+	teachers -> (显示本课程学生列表)
+	teachers ----> (维护课程信息)
+	teachers -> (填写课程信息)
+	teachers --> (增删改本课程实验任务)
+	teachers -> (添加本课程学生信息)
+	teachers ----> (评定某学生成绩（课程、实验、评分点）)
+	teachers ---> (导入本课程学生信息EXCEL文件)
+
+	(选择任教课程) .left.> (显示本课程学生列表) : extends
+	(选择任教课程) .left.> (维护课程信息) : extends
+	(新建课程) .> (填写课程信息) : include
+	(新建课程) .> (导入本课程学生信息EXCEL文件) : include
+	(维护课程信息) .> (添加本课程学生信息) : include
+	(维护课程信息) .> (增删改本课程实验任务) : include
+	(显示本课程学生列表) .left.> (评定某学生成绩（课程、实验、评分点）) : extends
+
+
+	students ---> (选择学期)
+	students ---> (选择攻读课程)
+	students ---> (查看成绩及评价（课程、实验、评分点）)
+	students ---> (查看本课程实验任务)
+
+	(选择学期) .left.> (选择攻读课程) : include
+	(选择攻读课程) .left.> (查看成绩及评价（课程、实验、评分点）) : include
+	(选择攻读课程) .left.> (查看本课程实验任务) : include
+
+}
+
+skinparam handwritten true
+skinparam usecase {
+	BackgroundColor YellowGreen
+	BorderColor DarkSlateGray
+	ArrowColor Olive
+	ActorBorderColor black
+	ActorFontName Courier
+
+}
+@enduml

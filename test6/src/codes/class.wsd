@@ -1,0 +1,94 @@
+@startuml
+title 基于GitHub的实验管理平台--类图
+class users {
+    <b>user_id</b> （用户ID）
+    name （用户真实姓名）
+    github_username （用户GitHub账号）
+    update_date （用户GitHub账号修改日期）
+    password （用户密码）
+    disable （用户是否禁用）
+}
+class teachers{
+    <b>teacher_id</b> （老师工号）
+    department （老师所属部门）
+}
+class students{
+    <b>student_id</b> （学号）
+    major	（专业）
+    class （班级）
+    enrollment_year	（入学年份）
+    web_sum （个人GitHub网址是否正确）
+}
+users <|- students
+users <|-- teachers
+
+class courses {
+    <b>course_id</b> （课程号）
+    course_name （课程名称）
+    course_content	（课程内容简介）
+    course_term	 （开课学期）
+    course_major （开课专业）
+    course_class （开课班级）
+}
+
+class experiments {
+    <b>course_id</b> （课程号）
+    <b>experiment_id</b> （实验编号）
+    experiment_name	（实验名称）
+    experiment_content	（实验内容）
+    experiment_last_time （实验截至时间）
+}
+
+class details {
+	<b>course_id</b> （课程号）
+    <b>experiment_id</b> （实验编号）
+    <b>detail_id</b> （实验评分点编号）
+    detail_name	（实验评分点名称）
+    detail_content	（实验评分点内容）
+}
+
+class courses_scores {
+	<b>course_id</b> （课程编号）
+    <b>student_id</b> （学号）
+    course_score （课程成绩）
+    course_comment （任课老师对学生评语）
+    course_update_date （评改日期）
+    course_web_sum	（学生该课程GitHub网址是否正确）
+}
+
+class experiments_scores {
+    <b>course_id</b> （课程编号）
+    <b>experiment_id</b> （实验编号）
+    <b>student_id</b> （学号）
+    experiment_score （实验成绩）
+    experiment_comment （任课老师对学生本实验评语）
+    experiment_update_date （评改日期）
+    experiment_web_sum	（学生该课程GitHub网址是否正确）
+
+}
+
+class details_scores {
+    <b>course_id</b> （课程编号）
+    <b>experiment_id</b> （实验编号）
+    <b>detail_id</b> （评分点编号）
+    <b>student_id</b> （学号）
+    detail_score （实验评分点成绩）
+    detail_comment （实验评分点评语）
+    detail_update_date （评改日期）
+
+}
+
+students "1" -- "n"  courses_scores
+courses_scores "1" -- "n"  experiments_scores
+experiments_scores "1" -- "n"  details_scores
+
+teachers "1" -- "n"  courses
+courses "1" -- "n" experiments
+experiments "1" -- "n" details
+
+courses "1" -- "n" courses_scores
+experiments "1" -- "n" experiments_scores
+details "1" -- "n" details_scores
+
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor #Black
+skinparam titleFontSize 24
+Title 登出流程图
+
+database "前端存储Cookie\nSessionStorage" as 前端存储
+actor Login页面
+actor API服务
+
+== Login登录页面 ==
+Login页面->Login页面:用户点击登出按钮
+Login页面->API服务:API请求:<b>logout</b>,参数是用户名
+API服务->前端存储:根据用户名,\n将用户的ID值从到Cookies['session']中\n消去
+API服务->Login页面:返回Login页面
+== 用户登录后正常使用，\n每次请求访问将浏览器中的\nCookies['session']==
+
+@enduml

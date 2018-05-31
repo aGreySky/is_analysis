@@ -1,0 +1,20 @@
+@startuml
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor #Black
+skinparam titleFontSize 24
+Title 显示课程信息流程图
+
+
+actor 显示课程信息主页面
+actor API服务
+database 数据库存储
+
+== 主页面 ==
+显示课程信息主页面->API服务:传入course_id
+API服务->数据库存储:根据course_id查询courses表
+数据库存储->API服务:返回唯一的课程course记录
+API服务->显示课程信息主页面:返回课程信息
+== 登录后正常使用，\n每次请求都会访问API==
+
+@enduml

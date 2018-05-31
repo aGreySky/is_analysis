@@ -1,0 +1,16 @@
+@startuml
+title 基于GitHub的实验管理平台--删除课程信息的顺序图
+actor teachers
+teachers -> courses: 给出要删除的course_id
+courses -> details_scores: 根据course_id,删除details_scores中对应的实验评分点成绩数据
+courses -> experiments_scores: 根据course_id,删除experiments_scores中对应的实验成绩数据
+courses -> courses_scores: 根据course_id,删除courses_scores中的课程成绩数据
+courses -> details: 根据course_id,删除details中数据
+courses -> experiments: 根据course_id,删除experiments中数据
+courses -> courses: 根据course_id,删除courses中数据
+
+
+
+
+
+@enduml

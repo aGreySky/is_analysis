@@ -1,0 +1,12 @@
+@startuml
+title 基于GitHub的实验管理平台--显示成绩列表的顺序图
+actor students和teachers
+students和teachers -> courses_scores: 根据学号和课程编号查询课程成绩
+students和teachers -> experiments_scores: 根据学号、课程编号和实验编号查询实验成绩
+students和teachers -> details_scores: 根据学号和课程编号、实验编号和评分点编号查询评分点成绩
+details_scores -> students和teachers: 返回对应的评分点成绩
+experiments_scores -> students和teachers: 返回对应的实验成绩
+courses_scores -> students和teachers: 返回对应的课程成绩
+
+
+@enduml
