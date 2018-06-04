@@ -33,7 +33,7 @@
   |experiment_name|实验名称|
   |experiment_content|实验内容|
   |experiment_last_time|实验截至时间|
-  * 注：新增实验是无需传入experiment_id和course_id,每个id为数据库主键，创建后无法更改。
+  * 注：每个id为数据库主键，创建后无法更改。
   
 - 返回实例：
 

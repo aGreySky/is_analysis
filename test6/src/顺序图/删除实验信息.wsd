@@ -1,5 +1,5 @@
 @startuml
-title 基于GitHub的实验管理平台--删除课程信息的顺序图
+title 基于GitHub的实验管理平台--删除实验信息的顺序图
 actor teachers
 teachers -> experiments: 给出要删除的experiment_id
 experiments -> details_scores: 根据experiment_id,删除details_scores中对应的实验评分点成绩数据

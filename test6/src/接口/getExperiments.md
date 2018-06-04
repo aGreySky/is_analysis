@@ -33,15 +33,15 @@
             "info": null,
             "data": {
                 "experiments": [{
-                    "experiment_id": "1"
-                    "experiment_name": "C语言语法练习"
-                    "experiment_content": "熟练运用和掌握C语言的相关语法"
+                    "experiment_id": 1，
+                    "experiment_name": "C语言语法练习"，
+                    "experiment_content": "熟练运用和掌握C语言的相关语法"，
                     "experiment_last_time": "2015-11-29 11:46:27"
 
                 },{
-                    "experiment_id": "2"
-                    "experiment_name": "C语言数组练习"
-                    "experiment_content": "学会使用C语言的数组来表示数据"
+                    "experiment_id": 2，
+                    "experiment_name": "C语言数组练习"，
+                    "experiment_content": "学会使用C语言的数组来表示数据"，
                     "experiment_last_time": "2015-11-29 11:46:27"
                 }]   
             }    
