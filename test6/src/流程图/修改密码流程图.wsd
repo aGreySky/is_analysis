@@ -1,0 +1,21 @@
+@startuml
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor #Black
+skinparam titleFontSize 24
+Title 修改密码流程图
+database "前端存储Cookie\nSessionStorage" as 前端存储
+actor 用户主页面
+actor API服务
+database 数据库存储
+
+== Login登录页面 ==
+用户主页面->用户主页面:使用JSEncrypt通过公钥加密输入的密码
+用户主页面->API服务:传入加密后的2个新密码
+API服务->API服务:判断2次输入的密码是否相同，相同则更新数据库
+API服务->数据库存储:根据user_id更新users表的密码字段
+API服务->前端存储:将用户的ID值从Cookies['session']中去除
+API服务->Login页面:返回成功信息
+== 用户登录后正常使用，\n每次请求成功都会将\nCookies['session']中该用户的信息删除==
+
+@enduml
